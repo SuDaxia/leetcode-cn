@@ -1,0 +1,29 @@
+#https://leetcode-cn.com/problems/longest-common-prefix/
+#python 2.xx
+
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        length=0
+        size=len(strs)
+        if size==0:
+            return ""
+        elif size==1:
+            return strs[0]
+        try:
+            for i in range(len(strs[0])):
+                isok=True
+                for j in range(1,size):
+                    if strs[j-1][i]!=strs[j][i]:
+                        isok=False
+                        break
+                if not isok:
+                    break
+                else:
+                    length+=1
+        except Exception as e:
+            print e
+        return strs[0][0:length]
