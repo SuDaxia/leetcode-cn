@@ -1,0 +1,27 @@
+#https://leetcode-cn.com/problems/3sum/
+#python 2.xx
+
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        temp=[]
+        nums.sort()
+        size=len(nums)
+        for left in range(size):
+            if left>0 and nums[left]==nums[left-1]:
+                continue
+            right=size-1
+            for mid in range(left+1,size):
+                if mid>left+1 and nums[mid]==nums[mid-1]:
+                    continue
+                while mid<right and nums[left]+nums[mid]+nums[right]>0:
+                    right-=1
+                if mid==right:
+                    break
+                if nums[left]+nums[mid]+nums[right]==0:
+                    temp.append([nums[left],nums[mid],nums[right]])
+        return temp
+                
