@@ -1,0 +1,31 @@
+#
+#python 2.xx
+class Solution(object):
+    def threeSumClosest(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        nums.sort()
+        size =len(nums)
+        result=0
+        distance=10**7
+        for left in range(size):
+            if left>0 and nums[left]==nums[left-1]:
+                continue
+            right=size-1
+            for mid in range(left+1,size-1):
+                if nums[left]+nums[mid]+nums[right]==target:
+                    return target
+                if nums[mid]==nums[mid-1]:
+                    continue
+                while mid<right and nums[left]+nums[mid]+nums[right]-target>0 and abs(nums[left]+nums[mid]+nums[right]-target)<distance:
+                    right-=1
+                    result=nums[left]+nums[mid]+nums[right]
+                while mid<right and nums[left]+nums[mid]+nums[right]-target<0 and abs(nums[left]+nums[mid]+nums[right]-target)<distance:
+                    mid+=1
+                    result=nums[left]+nums[mid]+nums[right]   
+                if mid== right:
+                    break
+        return result
