@@ -1,4 +1,4 @@
-#
+#https://leetcode-cn.com/problems/3sum-closest/submissions/
 #python 2.xx
 class Solution(object):
     def threeSumClosest(self, nums, target):
@@ -9,23 +9,18 @@ class Solution(object):
         """
         nums.sort()
         size =len(nums)
-        result=0
-        distance=10**7
+        result=nums[0]+nums[1]+nums[2]
         for left in range(size):
-            if left>0 and nums[left]==nums[left-1]:
-                continue
+            mid=left+1
             right=size-1
-            for mid in range(left+1,size-1):
-                if nums[left]+nums[mid]+nums[right]==target:
+            while mid<right:
+                cur=nums[left]+nums[mid]+nums[right]
+                if cur==target:
                     return target
-                if nums[mid]==nums[mid-1]:
-                    continue
-                while mid<right and nums[left]+nums[mid]+nums[right]-target>0 and abs(nums[left]+nums[mid]+nums[right]-target)<distance:
+                if abs(cur-target)<abs(result-target):
+                    result=cur
+                if  nums[left]+nums[mid]+nums[right]>target:
                     right-=1
-                    result=nums[left]+nums[mid]+nums[right]
-                while mid<right and nums[left]+nums[mid]+nums[right]-target<0 and abs(nums[left]+nums[mid]+nums[right]-target)<distance:
+                else:
                     mid+=1
-                    result=nums[left]+nums[mid]+nums[right]   
-                if mid== right:
-                    break
         return result
