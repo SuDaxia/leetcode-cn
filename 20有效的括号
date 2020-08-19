@@ -1,0 +1,20 @@
+#https://leetcode-cn.com/problems/valid-parentheses/submissions/
+#python 2.x
+
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        stack="#"
+        dicta={")":"(","]":"[","}":"{"}
+        for char in s:
+            if not dicta.has_key(char) or stack[-1]!=dicta[char]:
+                stack+=char
+            else:
+                #匹配
+                stack=stack[0:-1]
+        if stack=="#":
+            return True
+        return False
