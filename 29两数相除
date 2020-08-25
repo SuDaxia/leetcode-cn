@@ -1,0 +1,25 @@
+#https://leetcode-cn.com/problems/divide-two-integers/
+#python 2.x
+
+#超时，应该扩大倍数，进行翻倍操作，更快的找到极限
+class Solution(object):
+    def divide(self, dividend, divisor):
+        """
+        :type dividend: int
+        :type divisor: int
+        :rtype: int
+        """
+        #import math
+        isNegative=False
+        if (dividend<0 and divisor >0 ) or (dividend>0 and divisor <0):
+            isNegative=True
+        dividend=abs(dividend)
+        divisor=abs(divisor)
+        consult=0
+        while dividend>=divisor:
+            dividend-=divisor
+            consult+=1
+        if isNegative:
+            return -consult 
+        else:
+            return consult
