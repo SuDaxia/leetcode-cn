@@ -9,8 +9,6 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        if len(nums)<1:
-            return 0
         index=0
         for i in range(len(nums)):
             if nums[i]<target:
@@ -20,3 +18,33 @@ class Solution(object):
         return index
         
 #想用二分法，搞死我了，草
+class Solution(object):
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if len(nums)<1:
+            return 0
+        l=0
+        r=len(nums)-1
+        '''
+        if nums[0]>=target:
+            return 0
+        if nums[l]<=target:
+            return r
+        '''
+        while l<r:
+            if target<=nums[l]:
+                return l
+            elif target>nums[r]:
+                return r+1
+            elif target==nums[r]:
+                return r
+            if target==nums[(l+r+1)/2]:
+                return target
+            elif target>nums[(l+r+1)/2]:
+                l=(l+r+1)/2
+            else:
+                r=(l+r+1)/2
