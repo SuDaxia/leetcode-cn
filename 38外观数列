@@ -1,0 +1,31 @@
+#https://leetcode-cn.com/problems/count-and-say/
+#python 2.x
+
+class Solution(object):
+    def countAndSay(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        def nextnumstr(numstr):
+            temp=""
+            cnt=0
+            while cnt<len(numstr)-1:
+                cur=numstr[cnt]
+                count=1
+                while cnt+1<len(numstr) and numstr[cnt]==numstr[cnt+1]:
+                    #print "cycle",cnt,count,"+1"
+                    cnt+=1
+                    count+=1
+                temp=temp+str(count)+cur
+                cnt+=1
+                #print "temp:",temp
+                #print "cnt:",cnt
+            if cnt==len(numstr)-1:
+                temp=temp+"1"+numstr[-1]
+            return temp
+        curstr="1"
+        if n==1:return curstr
+        for i in range(n-1):
+            curstr=nextnumstr(curstr)
+        return curstr
