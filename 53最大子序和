@@ -1,0 +1,18 @@
+#https://leetcode-cn.com/problems/maximum-subarray/submissions/
+#python 2.x
+
+#方法一 动态规划（滚动数组） 总体解 max([f(i) for i in range(size)])  f(i)就是到i的最大总体解 f(i)=max(f(i-1)+nums[i],fi)
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        m=nums[0]
+        pre=0
+        for i in range(len(nums)):
+            pre=max(pre+nums[i],nums[i])
+            m=max(pre,m)
+        return m
+        
+#方法二 分治法（线段树）
