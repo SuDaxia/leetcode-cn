@@ -1,0 +1,19 @@
+#https://leetcode-cn.com/problems/plus-one/submissions/
+#python 2.x
+
+class Solution(object):
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        curs=range(len(digits))
+        curs.reverse()
+        for i in curs:
+            digits[i]=(digits[i]+1)%10
+            #不为零，就不能继续往前进位加一
+            if digits[i]!=0:
+                return digits
+        #前面没有返回值，说明最高位9加一再进位了
+        return [1]+digits
+
