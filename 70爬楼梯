@@ -1,0 +1,34 @@
+#https://leetcode-cn.com/problems/climbing-stairs/
+#python 2.x
+
+#从前往后递归，超时，应当考虑滚动数组
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def f(i):
+            if i==n:
+                return 1
+            if i<n:
+                return f(i+2)+f(i+1)
+            if i>n:
+                return 0
+        return f(0)
+#方法二滚动数组        
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n<3:
+            return n
+        prea=1
+        preb=2
+        for i in range(2,n):
+            temp=prea
+            prea=preb
+            preb=temp+preb
+        return preb
