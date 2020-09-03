@@ -1,0 +1,23 @@
+#https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+#python2
+
+#递归调用解决，终结点都是null，返回0，不会null的节点，递归左右节点深度更大的那个加1进行返回
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if root==None:
+            return 0
+        return max(self.maxDepth(root.left),self.maxDepth(root.right))+1
+        
+        
