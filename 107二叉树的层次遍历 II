@@ -1,0 +1,31 @@
+#https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/
+#python2
+
+#给一个数字a=[] 专门存放第几层的list，从根开始，深度信息加一，从左节点到右节点追加(更新)a[depth]里list的信息，最后a再逆序就是结果了
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def levelOrderBottom(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        a=[]
+        def subOrder(root,n):
+            if root==None:
+                return
+            if not n<len(a):
+                a.insert(n,[root.val])
+            else:
+                a[n]=a[n]+[root.val]
+            subOrder(root.left,n+1)
+            subOrder(root.right,n+1)
+        subOrder(root,0)
+        a.reverse()
+        return a
