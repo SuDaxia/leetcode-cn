@@ -1,0 +1,32 @@
+#https://leetcode-cn.com/problems/symmetric-tree/
+#python2
+
+#借助前面判定两个二叉树是否相等，只不过去掉根节点后的两棵子树，往下递归遍历时，左节点与另一颗树右节点比较，右节点与另一棵树左节点比较而已。
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        if root==None:
+            return True
+        p=root.left
+        q=root.right
+        def isSameLRTree(p, q):
+            if p==None and q==None:
+                return True
+            if p!=None and q==None:
+                return False
+            if p==None and q!=None:
+                return False
+            return p.val==q.val and isSameLRTree(p.left,q.right) and isSameLRTree(p.right,q.left)
+        return isSameLRTree(p,q)
+        
