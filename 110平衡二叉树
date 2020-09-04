@@ -1,0 +1,31 @@
+#https://leetcode-cn.com/problems/balanced-binary-tree/
+#pytnon2
+
+#后续遍历，尽量减少节点高度重复调用次数，借助实例变量判定非平衡，就不计算直接返回-1
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def isBalanced(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        
+        self.isBanced=True
+        def setDepth(p):
+            if not self.isBanced:
+                return -1
+            if p==None:
+                return 0
+            ldepth=setDepth(p.left)
+            rdepth=setDepth(p.right)
+            self.isBanced = self.isBanced and abs(ldepth-rdepth)<2
+            return max(ldepth,rdepth)+1
+        setDepth(root)
+        return self.isBanced
