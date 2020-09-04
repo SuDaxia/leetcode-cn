@@ -1,0 +1,27 @@
+#https://leetcode-cn.com/problems/merge-sorted-array/
+#python2
+class Solution(object):
+    def merge(self, nums1, m, nums2, n):
+        """
+        :type nums1: List[int]
+        :type m: int
+        :type nums2: List[int]
+        :type n: int
+        :rtype: None Do not return anything, modify nums1 in-place instead.
+        """
+        a=0
+        b=0
+        cm=m
+        while a<m and b <n:
+            if nums1[a]>nums2[b]:
+                nums1.insert(a,nums2[b])
+                m+=1
+                b+=1
+            else:
+                a+=1
+        while b<n :
+            nums1.insert(a,nums2[b])
+            a+=1
+            b+=1
+        for i in range(len(nums1)-cm-n):
+            nums1.pop()
