@@ -1,0 +1,29 @@
+#https://leetcode-cn.com/problems/path-sum/
+#python2
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def hasPathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: bool
+        """
+        self.flag=False
+        def helper(p,data,sum):
+            if p!=None and p.left==None and p.right==None:
+                if data+p.val==sum:
+                    self.flag=True
+            else:
+                if p!=None and p.left!=None:
+                    helper(p.left,data+p.val,sum)
+                if p!=None and  p.right!=None:
+                    helper(p.right,data+p.val,sum)
+        helper(root,0,sum)
+        return self.flag
