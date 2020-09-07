@@ -1,0 +1,30 @@
+#https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/
+#python 2
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if root==None:
+            return 0
+        import sys
+        self.data=sys.maxint
+        def helper(p,n):
+            if p!=None and p.left==None and p.right==None:
+                if n<self.data:
+                    self.data=n
+            else:
+                if p.left!=None:
+                    helper(p.left,n+1)
+                if p.right!=None:
+                    helper(p.right,n+1)
+        helper(root,1)
+        return self.data
