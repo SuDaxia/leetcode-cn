@@ -22,9 +22,9 @@ class Solution(object):
                 if n<self.data:
                     self.data=n
             else:
-                if p.left!=None:
+                if p!=None and p.left!=None:
                     helper(p.left,n+1)
-                if p.right!=None:
+                if p!=None and p.right!=None:
                     helper(p.right,n+1)
         helper(root,1)
         return self.data
