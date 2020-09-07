@@ -1,0 +1,20 @@
+#https://leetcode-cn.com/problems/pascals-triangle/
+#python2
+
+class Solution(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        ans=[[1],[1,1]]
+        if numRows<3:
+            return ans[:numRows]
+        def gen(numRow):
+            ans.append([1])
+            for i in range(1,numRow-1):
+                ans[numRow-1].append(ans[numRow-2][i-1]+ans[numRow-2][i])
+            ans[numRow-1].append(1)
+        for i in range(3,numRows+1):
+            gen(i)
+        return ans
