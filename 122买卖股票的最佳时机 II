@@ -1,0 +1,14 @@
+#https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        cur=0
+        ans=0
+        while cur<len(prices):
+            if cur+1<len(prices) and prices[cur]<prices[cur+1]:
+                ans+=prices[cur+1]-prices[cur]
+            cur+=1
+        return ans
