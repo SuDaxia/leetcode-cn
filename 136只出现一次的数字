@@ -1,0 +1,10 @@
+#https://leetcode-cn.com/problems/single-number/
+
+#异或解决相同不相同，节省空间，尤其不用空间，就要想到位运算类
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return reduce(lambda x,y: x^y,nums)
