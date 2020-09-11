@@ -1,0 +1,22 @@
+#https://leetcode-cn.com/problems/single-number-ii/
+
+
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        #法四，bit位，x2x1形式表示，x2高位，x1低位；掩码mask=~(x2&x1)
+        res=0
+        x2=0
+        x1=0
+        for i in nums:
+            x2^=(x1&i) #因为高位依赖低位之前的状态，如果先变化低位，那么再变化低位没有之前的状态了
+            x1^=i
+            mask=~(x2&x1)
+            x1&=mask #这里顺序就无所谓了
+            x2&=mask
+        
+        #该返回什么呢？返回一次的，是01形式，返回低位为1的数据，就是x1。如果弄成5次重复，返回仅出现二次的，那么就是三个bit位 ~（101）即~(x3&~x2&x1)作为掩码，但只要出现010状态的即第二次，即返回x2即可。如果要返回第三次即011状态，那么返回x2或x1都可以。至于当弄成2次重复，返回进出线一次的。一位就能将它变为零了，就不需要掩码了。直接return x1就行。
+        return x1
