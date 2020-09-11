@@ -1,0 +1,26 @@
+#https://leetcode-cn.com/problems/linked-list-cycle/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+#快慢指针
+
+class Solution(object):
+    def hasCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        n=0
+        if not head or not head.next:
+            return False
+        slow=head
+        fast=head.next
+        while fast.next and fast.next.next:
+            if slow==fast:
+                return True
+            slow=slow.next
+            fast=fast.next.next
+        return False
