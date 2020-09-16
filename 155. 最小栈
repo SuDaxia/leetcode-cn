@@ -5,8 +5,8 @@ class MinStack(object):
         """
         initialize your data structure here.
         """
-        self.data=[[],[]]
-        self.minindex=-1
+        self.data=[]
+        self.min_e=[]
 
 
     def push(self, x):
@@ -14,35 +14,45 @@ class MinStack(object):
         :type x: int
         :rtype: None
         """
-        self.data[0].append(x)
-        if self.minindex<0:
-            self.minindex=0
-        elif self.data[0].index(self.minindex)>x:
-            self.minindex=len(self.data[0])-1
-        self.data[1].append(self.minindex)
-
+        if len(self.min_e)>0:
+            e=self.min_e[len(self.min_e)-1]
+        
+            if e<x:
+                self.min_e.append(e)
+            else:
+                self.min_e.append(x)
+        else:
+            self.min_e.append(x)
+        self.data.append(x)
+        #print self.data
+        #print self.min_e
 
     def pop(self):
         """
         :rtype: None
         """
-        self.data[0].pop()
-        self.data[1].pop()
-        self.minindex=self.data[1].index(len(self.data[0])-1)
+        self.data.pop()
+        self.min_e.pop()
 
 
     def top(self):
         """
         :rtype: int
         """
-        return self.data[0].index(len(self.data[0])-1)
+        if len(self.data)>0:
+            return self.data[len(self.data)-1]
+        else:
+            return None
 
 
     def getMin(self):
         """
         :rtype: int
         """
-        return self.data[0].index(self.minindex)
+        if len(self.min_e)>0:
+            return self.min_e[len(self.min_e)-1]
+        else:
+            return None
 
 
 
