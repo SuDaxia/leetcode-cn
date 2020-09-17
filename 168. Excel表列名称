@@ -1,0 +1,15 @@
+#https://leetcode-cn.com/problems/excel-sheet-column-title/
+#
+#脑子太笨了，TMD
+class Solution(object):
+    def convertToTitle(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        tempstr=""
+        while n>0:
+            tempstr+=chr(65+(n-1)%26)
+            n=(n-1)/26
+        return tempstr[::-1]
+        
