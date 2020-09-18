@@ -1,0 +1,12 @@
+#https://leetcode-cn.com/problems/excel-sheet-column-number/
+
+class Solution(object):
+    def titleToNumber(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        temp=0
+        for x in s:
+            temp=temp*26+ord(x)-64
+        return temp
