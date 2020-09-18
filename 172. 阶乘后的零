@@ -1,0 +1,25 @@
+#https://leetcode-cn.com/problems/factorial-trailing-zeroes/
+
+class Solution(object):
+    def trailingZeroes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        '''
+        temp={5:0,2:0}
+        for x in range(n+1):
+            while x%5==0:
+                x=x/5
+                temp[5]+=1
+            while x%2==0:
+                x=x/2
+                temp[2]+=1
+        return min(temp[5],temp[2])
+        '''
+        #return len([x for x in xrange(5,n+1,5)]) #这个是忘了25 125 5**n
+        fives=0
+        while n>=5:
+            n/=5
+            fives+=n
+        return fives
