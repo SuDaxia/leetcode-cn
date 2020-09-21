@@ -1,0 +1,28 @@
+#https://leetcode-cn.com/problems/rotate-array/
+class Solution(object):
+    def rotate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        '''
+        #success
+        for i in range(k):
+            nums.insert(0,nums.pop())
+        return nums
+        '''
+        '''
+        #fail
+        nums= nums[-k:] + nums[0:-k]
+        print nums
+        '''
+        #fail
+        k%=len(nums)
+        for i in range(k):
+            j=i+k%len(nums)
+            temp=nums[i]
+            while not i==j:
+                temp,nums[j]=nums[j],temp
+            nums[j]=temp
+        return nums
