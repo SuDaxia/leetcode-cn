@@ -1,0 +1,21 @@
+#https://leetcode-cn.com/problems/reverse-bits/
+class Solution:
+    # @param n, an integer
+    # @return an integer
+    def reverseBits(self, n):
+        res,power=0,31
+        #fail
+        while n:
+            res=res+(n&1)<<power
+            n>>1
+            power-=1
+        return res
+        '''
+        #success
+        ret, power = 0, 31
+        while n:
+            ret += (n & 1) << power
+            n = n >> 1
+            power -= 1
+        return ret
+        '''
