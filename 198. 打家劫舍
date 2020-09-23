@@ -1,0 +1,31 @@
+#https://leetcode-cn.com/problems/house-robber/
+
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        '''
+        #太慢了
+        if len(nums)<1:
+            return 0
+        elif len(nums)==1:
+            return nums[0]
+        elif len(nums)==2:
+            return max(nums)
+        else:
+            return max(nums[-1]+self.rob(nums[:-2]),self.rob(nums[:-1]))
+        '''
+        #滚动数组，往后滚动
+        if not nums:
+            return 0
+        elif len(nums)==1:
+            return nums[0]
+        pre=nums[0]
+        res=max(pre,nums[1])
+        for i in range(2,len(nums)):
+            temp=pre
+            pre=res
+            res=max(res,temp+nums[i])
+        return res
