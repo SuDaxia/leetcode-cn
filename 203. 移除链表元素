@@ -1,0 +1,27 @@
+#https://leetcode-cn.com/problems/remove-linked-list-elements/
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+#就是头节点搞死人
+class Solution(object):
+    def removeElements(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        while head and head.val==val:
+            head=head.next
+        front=head
+        p=head
+        while p:
+            if p.val==val :
+                front.next=p.next
+            else:
+                front=p
+            p=p.next
+        return head
