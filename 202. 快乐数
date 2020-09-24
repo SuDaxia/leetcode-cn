@@ -1,0 +1,21 @@
+#https://leetcode-cn.com/problems/happy-number/
+#循环与快慢指针
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        def nextnum(n):
+            res=0
+            while n:
+                n,remainder=divmod(n,10)
+                res+=remainder**2
+            return res
+        
+        slow=n
+        fast=nextnum(nextnum(n))
+        while fast!=1 and fast!=slow:
+            slow=nextnum(slow)
+            fast=nextnum(nextnum(fast))
+        return fast==1
