@@ -1,0 +1,23 @@
+#https://leetcode-cn.com/problems/contains-duplicate-ii/
+#太TMD迷糊了
+
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        a={}
+        for i in range(len(nums)):
+            if not a.has_key(nums[i]):
+                a[nums[i]]=[i]
+            else:
+                a[nums[i]].append(i)
+        for key,v in a.items():
+            if len(v)>1:
+                for i in range(len(v)):
+                    for j in range(i+1,len(v)):
+                        if abs(v[j]-v[i])<=k:
+                            return True
+        return False
