@@ -1,0 +1,32 @@
+#https://leetcode-cn.com/problems/isomorphic-strings/
+
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        if (s and not t) or (not s and t) or len(s)!=len(t):
+            return False
+        def getinfo(s):
+            a=[[],[]]
+            for i in range(len(s)):
+                if a[0].__contains__(s[i]):
+                    a[1][a[0].index(s[i])].append(i)
+                else:
+                    a[0].append(s[i])
+                    a[1].append([i])
+            return a
+        a=getinfo(s)
+        b=getinfo(t)
+        if len(a[0])==len(b[0]):
+            for x,y in zip(a[1],b[1]):
+                if len(x)==len(y):
+                    for x1,y1 in zip(x,y):
+                        if x1!=y1:
+                            return False
+                else:
+                    return False
+            return True
+        return False
